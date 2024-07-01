@@ -1,0 +1,5 @@
+#-------------------------
+# Composer
+#-------------------------
+vendor/
+app/config/active_directoryv3.php
