@@ -22,7 +22,7 @@ class ActiveDirectoryv3XmlWebservice
 	public function authentification($login, $password)
 	{
 		include_once 'app/config/active_directoryv3.php';
-		$activeDirectoryv3 = new ActiveDirectoryv3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $_config['ldap']['accountSuffix'], $login.$_config['ldap']['accountSuffix'] , $password);
+		$activeDirectoryv3 = new ActiveDirectoryv3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $login , $_config['ldap']['accountSuffix'], $password, $_config['ldap']['port']);
 		if ($activeDirectoryv3->authentification()) {
 			
 			return "<SUCCES>1</SUCCES>";
@@ -35,10 +35,10 @@ class ActiveDirectoryv3XmlWebservice
 	public function getGroupesParSamaccountname($samaccountname)
 	{
 		include_once 'app/config/active_directoryv3.php';
-		$activeDirectoryv3 = new ActiveDirectoryv3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $_config['ldap']['accountSuffix'], $_config['ldap']['login'].$_config['ldap']['accountSuffix'] , $_config['ldap']['password']);
-		if ($activeDirectoryv3->authentification()) {
+		$activeDirectoryV3 = new ActiveDirectoryV3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $_config['ldap']['login'], $_config['ldap']['accountSuffix'], $_config['ldap']['password'], $_config['ldap']['port']);
+		if ($activeDirectoryV3->authentification()) {
 			// Récupère les groupes de la personne
-			$groupes = $activeDirectoryv3->getGroupesParSamaccountname($samaccountname);
+			$groupes = $activeDirectoryV3->getGroupesParSamaccountname($samaccountname);
 			// Génération du retour
 			$retour = "<SUCCES>0</SUCCES>";
 			if (!is_null($groupes)) {
@@ -61,11 +61,11 @@ class ActiveDirectoryv3XmlWebservice
 	public function getEmailParSamaccountname($samaccountname)
 	{
 		include_once 'app/config/active_directoryv3.php';
-		$activeDirectoryv3 = new ActiveDirectoryv3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $_config['ldap']['accountSuffix'], $_config['ldap']['login'].$_config['ldap']['accountSuffix'] , $_config['ldap']['password']);
-		// Récupère l'email de la personne
+		$activeDirectoryV3 = new ActiveDirectoryV3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $_config['ldap']['login'], $_config['ldap']['accountSuffix'], $_config['ldap']['password'], $_config['ldap']['port']);
 		$retour = "<SUCCES>0</SUCCES>";
-		if ($activeDirectoryv3->authentification()) {
-			$email = $activeDirectoryv3->getEmailParSamaccountname($samaccountname);
+		// Récupère l'email de la personne
+		if ($activeDirectoryV3->authentification()) {
+			$email = $activeDirectoryV3->getEmailParSamaccountname($samaccountname);
 			if (!empty($email)) {
 				$retour = "<SUCCES>1</SUCCES>";
 				$retour .= "<EMAIL>" . $email . "</EMAIL>";
@@ -76,12 +76,12 @@ class ActiveDirectoryv3XmlWebservice
 	public function getGroupesParMachine($machine)
 	{
 		include_once 'app/config/active_directoryv3.php';
-		$activeDirectoryv3 = new ActiveDirectoryv3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $_config['ldap']['accountSuffix'], $_config['ldap']['login'].$_config['ldap']['accountSuffix'] , $_config['ldap']['password']);
+		$activeDirectoryV3 = new ActiveDirectoryV3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $_config['ldap']['login'], $_config['ldap']['accountSuffix'], $_config['ldap']['password'], $_config['ldap']['port']);
 		$retour = "<SUCCES>0</SUCCES>";
-		if ($activeDirectoryv3->authentification()) {
+		if ($activeDirectoryV3->authentification()) {
 			// Récupère les groupes de la machine
 			$retour = "<SUCCES>1</SUCCES>";
-			$groupes = $activeDirectoryv3->getGroupesParMachine($machine);
+			$groupes = $activeDirectoryV3->getGroupesParMachine($machine);
 			if (count($groupes)>0) {
 				$retour .= "<GROUPES>";
 				foreach ($groupes as $id=>$groupe) {
@@ -97,13 +97,12 @@ class ActiveDirectoryv3XmlWebservice
 	{
 		// Récupère les membres du groupe
 		include_once 'app/config/active_directoryv3.php';
-		$activeDirectoryv3 = new ActiveDirectoryv3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $_config['ldap']['accountSuffix'], $_config['ldap']['login'].$_config['ldap']['accountSuffix'] , $_config['ldap']['password']);
-
+		$activeDirectoryV3 = new ActiveDirectoryV3($_config['ldap']['hostname'], $_config['ldap']['baseDn'], $_config['ldap']['login'], $_config['ldap']['accountSuffix'], $_config['ldap']['password'], $_config['ldap']['port']);
 		$retour = "<SUCCES>0</SUCCES>";
-		if ($activeDirectoryv3->authentification()) {
+		if ($activeDirectoryV3->authentification()) {
 			// Récupère les groupes de la machine
 			$retour = "<SUCCES>1</SUCCES>";
-			$membres = $activeDirectoryv3->getMembresParGroupe($groupe);
+			$membres = $activeDirectoryV3->getMembresParGroupe($groupe);
 			if (count($membres)>0) {
 				$retour .= "<MEMBRES>";
 				foreach ($membres as $id=>$membre) {
