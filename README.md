@@ -1,4 +1,4 @@
-<h1  align="center">ActiveDicrectoryV2</h1>
+<h1  align="center">ActiveDicrectoryV3</h1>
 
 <h3  align="center">Webservice SOAP</h3>
 
@@ -17,7 +17,7 @@
 
 <p  align="center">
 
-<a  href="https://github.com/CPAS-Charleroi-Informatique/Active_directory_V2.git">Github</a>
+<a  href="https://github.com/CPAS-Charleroi-Informatique/Active_Directory_V3.git">Github</a>
 
 </p>
 
@@ -26,8 +26,8 @@
 
 ##  Prérequis
 
-  - PHP 7.3.12.
-  - Composer require adldap2/adldap2
+  - PHP 8.1ou >.
+  - composer require directorytree/ldaprecord
 
   
 
@@ -35,20 +35,20 @@
 
   
 
-- Recopier le fichier app/config/_active_directoryv2.php en **active_directory2.php**.
-- Indiquer les données d'authentification dans le fichier app/config/active_directoryv2.php.
+- Recopier le fichier app/config/_active_directoryv3.php en **active_directory3.php**.
+- Indiquer les données d'authentification dans le fichier app/config/active_directoryv3.php.
 
 ## Ressources 
 
 Il y a deux façons d'obtenir les renseignements.   
 
 Environnement de test. 
- - https://librarytest.cpas.intra/activedirectoryv2/index.php?wsdl
- - https://librarytest.cpas.intra/activedirectoryv2/xmlv2.php?wsdl
+ - https://librarytest.cpas.intra/activedirectoryv3/index.php?wsdl
+ - https://librarytest.cpas.intra/activedirectoryv3/xmlv2.php?wsdl
 
 Environnement de production. 
- - https://library.cpas.intra/activedirectoryv2/index.php?wsdl
- - https://library.cpas.intra/activedirectoryv2/xmlv2.php?wsdl
+ - https://library.cpas.intra/activedirectoryv3/index.php?wsdl
+ - https://library.cpas.intra/activedirectoryv3/xmlv2.php?wsdl
 
 Les réponses pour "Xmlv2" sont de type chaine de caractères qui représentent un format de type XML.
 
@@ -120,7 +120,7 @@ Les réponses pour "Xmlv2" sont de type chaine de caractères qui représentent 
 ## Auteur 
 
 - Olivier Gantois 
-- Dernière modification par Olivier Gantois : 19/07/2023.
+- Dernière modification par Olivier Gantois : 01/07/2024.
  
 			
 	
